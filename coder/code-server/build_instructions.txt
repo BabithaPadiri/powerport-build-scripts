@@ -1,284 +1,32 @@
-+++++ code-server/ci/build/build.sh
-#!/bin/bash
-set -euo pipefail
+# Dependencies
+# ---------------------
+yum update -y
+yum groupinstall -y "Development Tools"
+yum install -y git
+yum install -y nodejs
+yum install -y npm
 
-# This script builds code-server and outputs the built files to the dist
-# directory. It is used by the CI to build code-server for release.
-
-# The script is run from the root of the repository.
-
-# The script assumes that the following environment variables are set:
-# - CODE_SERVER_VERSION: The version of code-server to build.
-# - CODE_SERVER_COMMIT: The commit of code-server to build.
-# - CODE_SERVER_RELEASE: The release of code-server to build.
-# - CODE_SERVER_BUILD: The build number of code-server to build.
-# - CODE_SERVER_BUILD_DATE: The build date of code-server to build.
-# - CODE_SERVER_BUILD_TIME: The build time of code-server to build.
-# - CODE_SERVER_BUILD_TIMESTAMP: The build timestamp of code-server to build.
-# - CODE_SERVER_BUILD_PLATFORM: The platform to build for.
-# - CODE_SERVER_BUILD_ARCH: The architecture to build for.
-# - CODE_SERVER_BUILD_TARGET: The target to build for.
-# - CODE_SERVER_BUILD_OUTPUT: The output directory to build to.
-
-# The script also assumes that the following tools are installed:
-# - git
-# - node
-# - yarn
-# - make
-# - gcc
-# - g++
-# - python
-# - pkg-config
-# - libx11-dev
-# - libxkbfile-dev
-# - libsecret-1-dev
-# - libkrb5-dev
-
-# The script will:
-# 1. Clone the code-server repository.
-# 2. Checkout the commit to build.
-# 3. Install the dependencies.
-# 4. Build code-server.
-# 5. Output the built files to the dist directory.
-
-# Clone the code-server repository.
+# Build
+# ---------------------
 git clone https://github.com/coder/code-server.git
 cd code-server
+npm install
+npm run build
+npm run release:standalone
+./out/code-server
 
-# Checkout the commit to build.
-git checkout "$CODE_SERVER_COMMIT"
-
-# Install the dependencies.
-yarn install --frozen-lockfile
-
-# Build code-server.
-yarn build
-
-# Output the built files to the dist directory.
-mkdir -p "$CODE_SERVER_BUILD_OUTPUT"
-cp -r out/* "$CODE_SERVER_BUILD_OUTPUT"
-
-
-+++++ code-server/ci/build/build.yaml
-name: Build code-server
-
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 16
-
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
-
-      - name: Build
-        run: yarn build
-
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: code-server
-          path: out/
-
-
-+++++ code-server/ci/build/build_ppc64le.sh
-#!/bin/bash
-set -euo pipefail
-
-# This script builds code-server for ppc64le.
-
-# The script is run from the root of the repository.
-
-# The script assumes that the following environment variables are set:
-# - CODE_SERVER_VERSION: The version of code-server to build.
-# - CODE_SERVER_COMMIT: The commit of code-server to build.
-# - CODE_SERVER_RELEASE: The release of code-server to build.
-# - CODE_SERVER_BUILD: The build number of code-server to build.
-# - CODE_SERVER_BUILD_DATE: The build date of code-server to build.
-# - CODE_SERVER_BUILD_TIME: The build time of code-server to build.
-# - CODE_SERVER_BUILD_TIMESTAMP: The build timestamp of code-server to build.
-# - CODE_SERVER_BUILD_PLATFORM: The platform to build for.
-# - CODE_SERVER_BUILD_ARCH: The architecture to build for.
-# - CODE_SERVER_BUILD_TARGET: The target to build for.
-# - CODE_SERVER_BUILD_OUTPUT: The output directory to build to.
-
-# The script also assumes that the following tools are installed:
-# - git
-# - node
-# - yarn
-# - make
-# - gcc
-# - g++
-# - python
-# - pkg-config
-# - libx11-dev
-# - libxkbfile-dev
-# - libsecret-1-dev
-# - libkrb5-dev
-
-# The script will:
-# 1. Clone the code-server repository.
-# 2. Checkout the commit to build.
-# 3. Install the dependencies.
-# 4. Build code-server.
-# 5. Output the built files to the dist directory.
-
-# Clone the code-server repository.
-git clone https://github.com/coder/code-server.git
-cd code-server
-
-# Checkout the commit to build.
-git checkout "$CODE_SERVER_COMMIT"
-
-# Install the dependencies.
-yarn install --frozen-lockfile
-
-# Build code-server.
-yarn build
-
-# Output the built files to the dist directory.
-mkdir -p "$CODE_SERVER_BUILD_OUTPUT"
-cp -r out/* "$CODE_SERVER_BUILD_OUTPUT"
-
-
-+++++ code-server/ci/build/build_arm64.sh
-#!/bin/bash
-set -euo pipefail
-
-# This script builds code-server for arm64.
-
-# The script is run from the root of the repository.
-
-# The script assumes that the following environment variables are set:
-# - CODE_SERVER_VERSION: The version of code-server to build.
-# - CODE_SERVER_COMMIT: The commit of code-server to build.
-# - CODE_SERVER_RELEASE: The release of code-server to build.
-# - CODE_SERVER_BUILD: The build number of code-server to build.
-# - CODE_SERVER_BUILD_DATE: The build date of code-server to build.
-# - CODE_SERVER_BUILD_TIME: The build time of code-server to build.
-# - CODE_SERVER_BUILD_TIMESTAMP: The build timestamp of code-server to build.
-# - CODE_SERVER_BUILD_PLATFORM: The platform to build for.
-# - CODE_SERVER_BUILD_ARCH: The architecture to build for.
-# - CODE_SERVER_BUILD_TARGET: The target to build for.
-# - CODE_SERVER_BUILD_OUTPUT: The output directory to build to.
-
-# The script also assumes that the following tools are installed:
-# - git
-# - node
-# - yarn
-# - make
-# - gcc
-# - g++
-# - python
-# - pkg-config
-# - libx11-dev
-# - libxkbfile-dev
-# - libsecret-1-dev
-# - libkrb5-dev
-
-# The script will:
-# 1. Clone the code-server repository.
-# 2. Checkout the commit to build.
-# 3. Install the dependencies.
-# 4. Build code-server.
-# 5. Output the built files to the dist directory.
-
-# Clone the code-server repository.
-git clone https://github.com/coder/code-server.git
-cd code-server
-
-# Checkout the commit to build.
-git checkout "$CODE_SERVER_COMMIT"
-
-# Install the dependencies.
-yarn install --frozen-lockfile
-
-# Build code-server.
-yarn build
-
-# Output the built files to the dist directory.
-mkdir -p "$CODE_SERVER_BUILD_OUTPUT"
-cp -r out/* "$CODE_SERVER_BUILD_OUTPUT"
-
-
-+++++ code-server/ci/build/build_ppc64le.sh
-#!/bin/bash
-set -euo pipefail
-
-# This script builds code-server for ppc64le.
-
-# The script is run from the root of the repository.
-
-# The script assumes that the following environment variables are set:
-# - CODE_SERVER_VERSION: The version of code-server to build.
-# - CODE_SERVER_COMMIT: The commit of code-server to build.
-# - CODE_SERVER_RELEASE: The release of code-server to build.
-# - CODE_SERVER_BUILD: The build number of code-server to build.
-# - CODE_SERVER_BUILD_DATE: The build date of code-server to build.
-# - CODE_SERVER_BUILD_TIME: The build time of code-server to build.
-# - CODE_SERVER_BUILD_TIMESTAMP: The build timestamp of code-server to build.
-# - CODE_SERVER_BUILD_PLATFORM: The platform to build for.
-# - CODE_SERVER_BUILD_ARCH: The architecture to build for.
-# - CODE_SERVER_BUILD_TARGET: The target to build for.
-# - CODE_SERVER_BUILD_OUTPUT: The output directory to build to.
-
-# The script also assumes that the following tools are installed:
-# - git
-# - node
-# - yarn
-# - make
-# - gcc
-# - g++
-# - python
-# - pkg-config
-# - libx11-dev
-# - libxkbfile-dev
-# - libsecret-1-dev
-# - libkrb5-dev
-
-# The script will:
-# 1. Clone the code-server repository.
-# 2. Checkout the commit to build.
-# 3. Install the dependencies.
-# 4. Build code-server.
-# 5. Output the built files to the dist directory.
-
-# Clone the code-server repository.
-git clone https://github.com/coder/code-server.git
-cd code-server
-
-# Checkout the commit to build.
-git checkout "$CODE_SERVER_COMMIT"
-
-# Install the dependencies.
-yarn install --frozen-lockfile
-
-# Build code-server.
-yarn build
-
-# Output the built files to the dist directory.
-mkdir -p "$CODE_SERVER_BUILD_OUTPUT"
-cp -r out/* "$CODE_SERVER_BUILD_OUTPUT"
-
-
-+++++ code-server/ci/build/build_s390x.sh
-#!/bin/bash
-set -euo pipefail
-
-# This script builds code-server for s390x.
-
-# The script is run
+# References
+# ---------------------
+https://github.com/coder/code-server/blob/main/install.sh
+https://coder.com/docs/code-server/latest/requirements
+https://coder.com/docs/code-server/latest/install
+https://cdr.co/coder-github
+https://github.com/coder/deploy-code-server
+https://github.com/coder/devcontainer-features/blob/main/src/code-server/README.md
+https://code-server.dev/install.sh
+https://coder.com/docs/code-server/latest/guide
+https://coder.com/docs/code-server/latest/FAQ
+https://coder.com/docs/code-server/latest/CONTRIBUTING
+https://coder.com/careers
+https://coder.com/careers#openings
+https://cdr.co/coder-github
