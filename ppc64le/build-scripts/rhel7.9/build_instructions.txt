@@ -1,0 +1,156 @@
+# Dependencies
+# ---------------------
+yum install -y git
+yum install -y gcc-c++
+yum install -y make
+yum install -y cmake
+yum install -y bzip2
+yum install -y zlib-devel
+yum install -y snappy-devel
+yum install -y libstdc++-devel
+yum install -y libaio-devel
+yum install -y libtool
+yum install -y autoconf
+yum install -y automake
+yum install -y openssl-devel
+yum install -y python3
+yum install -y python3-devel
+yum install -y python3-pip
+yum install -y python3-setuptools
+yum install -y python3-wheel
+yum install -y python3-cffi
+yum install -y python3-six
+yum install -y python3-cryptography
+yum install -y python3-idna
+yum install -y python3-urllib3
+yum install -y python3-chardet
+yum install -y python3-certifi
+yum install -y python3-requests
+yum install -y python3-ply
+yum install -y python3-pycparser
+yum install -y python3-pip
+yum install -y python3-setuptools
+yum install -y python3-wheel
+yum install -y python3-cffi
+yum install -y python3-six
+yum install -y python3-cryptography
+yum install -y python3-idna
+yum install -y python3-urllib3
+yum install -y python3-chardet
+yum install -y python3-certifi
+yum install -y python3-requests
+yum install -y python3-ply
+yum install -y python3-pycparser
+yum install -y python3-pip
+yum install -y python3-setuptools
+yum install -y python3-wheel
+yum install -y python3-cffi
+yum install -y python3-six
+yum install -y python3-cryptography
+yum install -y python3-idna
+yum install -y python3-urllib3
+yum install -y python3-chardet
+yum install -y python3-certifi
+yum install -y python3-requests
+yum install -y python3-ply
+yum install -y python3-pycparser
+yum install -y python3-pip
+yum install -y python3-setuptools
+yum install -y python3-wheel
+yum install -y python3-cffi
+yum install -y python3-six
+yum install -y python3-cryptography
+yum install -y python3-idna
+yum install -y python3-urllib3
+yum install -y python3-chardet
+yum install -y python3-certifi
+yum install -y python3-requests
+yum install -y python3-ply
+yum install -y python3-pycparser
+
+# Build
+# ---------------------
+git clone https://github.com/facebook/rocksdb.git
+cd rocksdb
+git submodule update --init --recursive
+mkdir -p build
+cd build
+cmake ..
+make -j$(nproc)
+make install
+
+# References
+# ---------------------
+https://github.com/facebook/rocksdb
+https://github.com/facebook/rocksdb/blob/master/INSTALL.md
+https://github.com/facebook/rocksdb/blob/master/BUILDING.md
+https://github.com/facebook/rocksdb/blob/master/INSTALL.md
+https://github.com/facebook/rocksdb/blob/master/BUILDING.md
+https://github.com/facebook/rocksdb/blob/master/INSTALL.md
+https://github.com/facebook/rocksdb/blob/master/BUILDING.md
+https://github.com/facebook/rocksdb/blob/master/INSTALL.md
+https://github.com/facebook/rocksdb/blob/master/BUILDING.md
+https://github.com/facebook/rocksdb/blob/master/INSTALL.md
+https://github.com/facebook/rocksdb/blob/master/BUILDING.md
+https://github.com/facebook/rocksdb/blob/master/INSTALL.md
+https://github.com/facebook/rocksdb/blob/master/BUILDING.md
+https://github.com/facebook/rocksdb/blob/master/INSTALL.md
+https://github.com/facebook/rocksdb/blob/master/BUILDING.md
+https://github.com/facebook/rocksdb/blob/master/INSTALL.md
+https://github.com/facebook/rocksdb/blob/master/BUILDING.md
+https://github.com/facebook/rocksdb/blob/master/INSTALL.md
+https://github.com/facebook/rocksdb/blob/master/BUILDING.md
+https://github.com/facebook/rocksdb/blob/master/INSTALL.md
+https://github.com/facebook/rocksdb/blob/master/BUILDING.md
+https://github.com/facebook/rocksdb/blob/master/INSTALL.md
+https://github.com/facebook/rocksdb/blob/master/BUILDING.md
+https://github.com/facebook/rocksdb/blob/master/INSTALL.md
+https://github.com/facebook/rocksdb/blob/master/BUILDING.md
+https://github.com/facebook/rocksdb/blob/master/INSTALL.md
+https://github.com/facebook/rocksdb/blob/master/BUILDING.md
+https://github.com/facebook/rocksdb/blob/master/INSTALL.md
+https://github.com/facebook/rocksdb/blob/master/BUILDING.md
+https://github.com/facebook/rocksdb/blob/master/INSTALL.md
+https://github.com/facebook/rocksdb/blob/master/BUILDING.md
+https://github.com/facebook/rocksdb/blob/master/INSTALL.md
+https://github.com/facebook/rocksdb/blob/master/BUILDING.md
+https://github.com/facebook/rocksdb/blob/master/INSTALL.md
+https://github.com/facebook/rocksdb/blob/master/BUILDING.md
+https://github.com/facebook/rocksdb/blob/master/INSTALL.md
+https://github.com/facebook/rocksdb/blob/master/BUILDING.md
+https://github.com/facebook/rocksdb/blob/master/INSTALL.md
+https://github.com/facebook/rocksdb/blob/master/BUILDING.md
+https://github.com/facebook/rocksdb/blob/master/INSTALL.md
+https://github.com/facebook/rocksdb/blob/master/BUILDING.md
+https://github.com/facebook/rocksdb/blob/master/INSTALL.md
+https://github.com/facebook/rocksdb/blob/master/BUILDING.md
+https://github.com/facebook/rocksdb/blob/master/INSTALL.md
+https://github.com/facebook/rocksdb/blob/master/BUILDING.md
+https://github.com/facebook/rocksdb/blob/master/INSTALL.md
+https://github.com/facebook/rocksdb/blob/master/BUILDING.md
+https://github.com/facebook/rocksdb/blob/master/INSTALL.md
+https://github.com/facebook/rocksdb/blob/master/BUILDING.md
+https://github.com/facebook/rocksdb/blob/master/INSTALL.md
+https://github.com/facebook/rocksdb/blob/master/BUILDING.md
+https://github.com/facebook/rocksdb/blob/master/INSTALL.md
+https://github.com/facebook/rocksdb/blob/master/BUILDING.md
+https://github.com/facebook/rocksdb/blob/master/INSTALL.md
+https://github.com/facebook/rocksdb/blob/master/BUILDING.md
+https://github.com/facebook/rocksdb/blob/master/INSTALL.md
+https://github.com/facebook/rocksdb/blob/master/BUILDING.md
+https://github.com/facebook/rocksdb/blob/master/INSTALL.md
+https://github.com/facebook/rocksdb/blob/master/BUILDING.md
+https://github.com/facebook/rocksdb/blob/master/INSTALL.md
+https://github.com/facebook/rocksdb/blob/master/BUILDING.md
+https://github.com/facebook/rocksdb/blob/master/INSTALL.md
+https://github.com/facebook/rocksdb/blob/master/BUILDING.md
+https://github.com/facebook/rocksdb/blob/master/INSTALL.md
+https://github.com/facebook/rocksdb/blob/master/BUILDING.md
+https://github.com/facebook/rocksdb/blob/master/INSTALL.md
+https://github.com/facebook/rocksdb/blob/master/BUILDING.md
+https://github.com/facebook/rocksdb/blob/master/INSTALL.md
+https://github.com/facebook/rocksdb/blob/master/BUILDING.md
+https://github.com/facebook/rocksdb/blob/master/INSTALL.md
+https://github.com/facebook/rocksdb/blob/master/BUILDING.md
+https://github.com/facebook/rocksdb/blob/master/INSTALL.md
+https://github
